@@ -1,0 +1,523 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap');
+
+:root {
+	--neon-primary: #0ff;
+	--neon-secondary: #f0f;
+	--dark-bg: #0a0a0a;
+	--glass-bg: rgba(255, 255, 255, 0.05);
+	--glass-border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+	font-family: 'Rajdhani', sans-serif;
+	margin: 0;
+	padding: 0;
+	line-height: 1.6;
+	background: url('CXYcgIvWsAA6QiD.jpg') no-repeat center center fixed;
+	background-size: cover;
+	color: #fff;
+	position: relative;
+}
+
+body::before {
+	content: "";
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(45deg, rgba(0, 0, 0, 0.9), rgba(10, 10, 10, 0.85));
+	z-index: -1;
+}
+
+header {
+	background: var(--glass-bg);
+	backdrop-filter: blur(10px);
+	border-bottom: 1px solid var(--glass-border);
+	padding: 1.5rem 0;
+	text-align: center;
+	position: relative;
+	overflow: hidden;
+}
+
+header::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	background: linear-gradient(90deg, var(--neon-primary), var(--neon-secondary));
+	animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+header h1 {
+	font-weight: 700;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+	color: #fff;
+	text-shadow: 0 0 10px var(--neon-primary);
+	margin: 0;
+}
+
+nav {
+	background: var(--glass-bg);
+	backdrop-filter: blur(10px);
+	padding: 1rem 0;
+	text-align: center;
+}
+
+nav a {
+	color: #fff;
+	margin: 0 25px;
+	text-decoration: none;
+	font-weight: 600;
+	font-size: 1.1rem;
+	position: relative;
+	transition: all 0.3s ease;
+}
+
+nav a::before {
+	content: '';
+	position: absolute;
+	bottom: -5px;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	background: var(--neon-primary);
+	transform: scaleX(0);
+	transition: transform 0.3s ease;
+}
+
+nav a:hover {
+	color: var(--neon-primary);
+	text-shadow: 0 0 5px var(--neon-primary);
+}
+
+nav a:hover::before {
+	transform: scaleX(1);
+}
+
+.container {
+	padding: 3rem;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+main {
+	padding: 3rem;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.container section h2 {
+    color: var(--neon-primary);
+    margin-top: 0;
+}
+
+.container section p {
+	color: rgba(255, 255, 255, 0.9);
+	font-size: 1.1rem;
+}
+
+footer {
+	background: var(--glass-bg);
+	backdrop-filter: blur(10px);
+	border-top: 1px solid var(--glass-border);
+	color: rgba(255, 255, 255, 0.7);
+	text-align: center;
+	padding: 1.5rem 0;
+	margin-top: 2rem;
+}
+
+@keyframes glow {
+	from {
+		opacity: 0.5;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@media (max-width: 768px) {
+	.container {
+		padding: 1.5rem;
+	}
+	
+	nav a {
+		margin: 0 15px;
+		font-size: 1rem;
+	}
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.section-options {
+    position: relative;
+}
+
+.options-toggle {
+    background: none;
+    border: none;
+    color: var(--neon-primary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px 10px;
+    transition: all 0.3s ease;
+}
+
+.options-toggle:hover {
+    text-shadow: 0 0 5px var(--neon-primary);
+}
+
+.options-menu {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    min-width: 150px;
+    display: none;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.section-options.active .options-menu {
+    display: block;
+}
+
+.option-item {
+    display: block;
+    padding: 10px 15px;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.option-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--neon-primary);
+}
+
+.container section h2 {
+	margin: 0;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    user-select: none;
+    z-index: 10000; /* Ensure this is very high */
+}
+
+.dropdown-content {
+    display: none; /* Initially hidden */
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    background: #fff; /* White background for clarity */
+    border: 1px solid #ccc; /* Light grey border */
+    min-width: 150px; /* Smaller width */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    z-index: 10000; /* Ensure this is very high */
+    pointer-events: auto; /* Ensure pointer events are enabled */
+}
+
+/* Show dropdown on click */
+.dropdown:focus-within .dropdown-content {
+    display: block; /* Show dropdown when the parent is focused */
+}
+
+/* Optional: Style for dropdown links */
+.dropdown-content a {
+    color: #333;
+    padding: 8px 12px;
+    text-decoration: none;
+    display: block;
+    transition: background 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    background: #f1f1f1; /* Change background on hover */
+}
+
+.dropdown-content a:not(:last-child) {
+    border-bottom: 1px solid #eee;
+}
+
+.dropdown-content a:hover {
+    background: #f1f1f1;
+    padding-left: 20px;
+}
+
+.dropdown-content a:active {
+    background: #e1e1e1;
+    transform: scale(0.98);
+}
+
+.dropdown-content:before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 20px;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border: 1px solid #ccc;
+    transform: rotate(45deg);
+}
+
+.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section {
+    z-index: 1; /* Set a lower z-index for sections */
+}
+
+.section-options.active .dropdown-content {
+    display: block;
+}
+
+/* Ensure the dropdown toggle can be focused */
+.dropdown-toggle {
+    outline: none; /* Remove default outline */
+}
+
+.feedback-container {
+	max-width: 600px;
+	margin: 2rem auto;
+	padding: 2rem;
+	box-shadow: 0 0 10px rgba(0,0,0,0.1);
+	border-radius: 8px;
+}
+
+.rating-container {
+	margin: 1rem 0;
+}
+
+.star-rating {
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: flex-end;
+}
+
+.star-rating input {
+	display: none;
+}
+
+.star-rating label {
+	cursor: pointer;
+	font-size: 30px;
+	color: #ddd;
+	padding: 5px;
+}
+
+.star-rating label:before {
+	content: '★';
+}
+
+.star-rating input:checked ~ label {
+	color: #ffd700;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+	color: #ffd700;
+}
+
+.feedback-form textarea {
+	width: 100%;
+	min-height: 150px;
+	padding: 10px;
+	margin: 1rem 0;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	resize: vertical;
+}
+
+.submit-btn {
+	background-color: #4CAF50;
+	color: white;
+	padding: 12px 20px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+.submit-btn:hover {
+	background-color: #45a049;
+}
+
+.member-photo-container {
+	position: relative;
+	width: 300px;
+	height: 400px;
+	perspective: 1000px;
+	margin: 20px;
+}
+
+.member-photo-inner {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	transform-style: preserve-3d;
+	transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.member-photo-container:hover .member-photo-inner {
+	transform: rotateY(10deg) translateZ(20px);
+}
+
+.member-photo {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 20px;
+	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+	transition: all 0.6s ease;
+}
+
+.photo-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(
+		45deg,
+		rgba(76, 175, 80, 0.8) 0%,
+		rgba(33, 150, 243, 0.8) 100%
+	);
+	opacity: 0;
+	border-radius: 20px;
+	transition: all 0.4s ease;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	padding: 20px;
+	color: white;
+}
+
+.member-photo-container:hover .photo-overlay {
+	opacity: 1;
+}
+
+.member-photo-container:hover .member-photo {
+	transform: scale(1.05);
+	filter: brightness(0.8);
+}
+
+.photo-overlay h4 {
+	margin: 0;
+	font-size: 1.5em;
+	font-weight: 600;
+	transform: translateY(20px);
+	opacity: 0;
+	transition: all 0.4s ease 0.1s;
+}
+
+.photo-overlay p {
+	margin: 5px 0 0;
+	font-size: 1em;
+	transform: translateY(20px);
+	opacity: 0;
+	transition: all 0.4s ease 0.2s;
+}
+
+.member-photo-container:hover .photo-overlay h4,
+.member-photo-container:hover .photo-overlay p {
+	transform: translateY(0);
+	opacity: 1;
+}
+
+/* Update the member-month section to accommodate new design */
+.member-month {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: 3rem;
+	align-items: center;
+	padding: 2rem;
+	background: #0a3159;
+	border-radius: 25px;
+	margin: 2rem 0;
+}
+
+.social-links {
+	margin-top: 2rem;
+	padding: 1rem;
+	text-align: center;
+}
+
+.social-links span {
+	display: block;
+	margin-bottom: 1rem;
+	font-size: 1.2rem;
+	color: #333;
+}
+
+.social-links a {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 45px;
+	height: 45px;
+	margin: 0 10px;
+	border-radius: 50%;
+	color: white;
+	text-decoration: none;
+	transition: all 0.3s ease;
+}
+
+.social-links a.facebook {
+	background: #3b5998;
+}
+
+.social-links a.twitter {
+	background: #1da1f2;
+}
+
+.social-links a.linkedin {
+	background: #0077b5;
+}
+
+.social-links a:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.social-links a i {
+	font-size: 20px;
+}
+
+.submit-btn {
+	background-color: transparent; /* Transparent background */
+	color: #007BFF; /* Blue text color */
+	border: 2px solid #007BFF; /* Blue border */
+	border-radius: 25px; /* Rounded corners */
+	padding: 12px 30px; /* Padding for the button */
+	font-size: 16px; /* Font size */
+	cursor: pointer;
+	transition: background-color 0.3s, color 0.3s, transform 0.3s; /* Smooth transition */
+}
+
+.submit-btn:hover {
+	background-color: #007BFF; /* Blue background on hover */
+	color: white; /* White text on hover */
+	transform: scale(1.05); /* Slightly enlarge the button */
+}
+
+.submit-btn:active {
+	background-color: #0056b3; /* Darker blue on click */
+	transform: scale(0.95); /* Slightly shrink the button */
+}
